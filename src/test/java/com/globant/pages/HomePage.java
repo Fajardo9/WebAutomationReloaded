@@ -1,0 +1,60 @@
+package com.globant.pages;
+
+import com.globant.utils.page.BasePage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+
+public class HomePage extends BasePage {
+
+    private List<WebElement> addToCartButtonsList;
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement btnReactBurgerMenu;
+
+    @FindBy(css = "a#logout_sidebar_link")
+    private WebElement btnLogout;
+
+    @FindBy(className = "btn_inventory")
+    private List<WebElement> addToCartButtons;
+
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]")
+    private WebElement cart;
+
+    @FindBy(css = "button[data-test='checkout']")
+    private WebElement checkoutBtn;
+
+    public WebElement getBtnReactBurgerMenu() {
+        return btnReactBurgerMenu;
+    }
+
+    public WebElement getBtnLogout() {
+        return btnLogout;
+    }
+
+    public List<WebElement> getAddToCartButtons() {
+        return addToCartButtons;
+    }
+
+    public WebElement getCart() {
+        return cart;
+    }
+
+    public WebElement getCheckoutBtn() {
+        return checkoutBtn;
+    }
+
+    public List<WebElement> getAddToCartButtonsList() {
+        return addToCartButtonsList;
+    }
+
+    public void setAddToCartButtonsList(List<WebElement> addToCartButtonsList) {
+        this.addToCartButtonsList = addToCartButtonsList;
+    }
+
+}
