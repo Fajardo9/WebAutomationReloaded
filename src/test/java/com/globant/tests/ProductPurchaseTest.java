@@ -3,10 +3,8 @@ package com.globant.tests;
 import com.globant.pages.*;
 import com.globant.utils.dataProvider.DataProviders;
 import com.globant.utils.test.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -22,13 +20,13 @@ public class ProductPurchaseTest extends BaseTest {
         assertTrue(homePage.isElementVisible(homePage.getBtnReactBurgerMenu(),4));
         log.info("Adding product to cart");
         homePage.setAddToCartButtonsList(homePage.getAddToCartButtons());
-        homePage.setSelectedProduct(homePage.getListOfAddToCartButtons().get(homePage.selectRandomProduct()));
+        homePage.setSelectedProduct(homePage.getListedProductsbyAddtoCartButtons().get(homePage.selectRandomProduct()));
         homePage.clickElement(homePage.getSelectedProduct());
         String productName = homePage.getSelectedProduct().getAttribute("id").replace("remove-", "");
         log.info("Verifying that the product was added to cart");
         assertEquals(homePage.getCartBtn().getText(),"1");
         homePage.clickElement(homePage.getCartBtn());
-        CartPage cartPage = homePage.returnCartPage();
+        CartPage cartPage = homePage.returnCartPage(driver);
         assertEquals(cartPage.getPageTitle().getText(),"Your Cart");
         assertEquals(cartPage.getSelectedProducts().size(), 1,
                 "The number of items in the cart does not match with the quantity selected by the user");
