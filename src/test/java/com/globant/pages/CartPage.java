@@ -10,12 +10,15 @@ import java.util.List;
 public class CartPage extends BasePage {
 
     private static final String PAGE_TITLE = "span.title[data-test='title']";
+    private static final String SELECTED_PRODUCTS = "inventory_item_name";
     private static final String CHECKOUT_BUTTON = "button[data-test='checkout']";
     private static final String CONTINUE_SHOPPING_BUTTON = "continue-shopping";
     private static final String REMOVE_FROM_CART_BUTTON = "cart_button";
 
     @FindBy(css = PAGE_TITLE)
     private WebElement pageTitle;
+    @FindBy(className = SELECTED_PRODUCTS)
+    private List<WebElement> selectedProducts;
     @FindBy(css = CHECKOUT_BUTTON)
     private WebElement checkoutBtn;
     @FindBy(id = CONTINUE_SHOPPING_BUTTON)
@@ -41,5 +44,9 @@ public class CartPage extends BasePage {
 
     public List<WebElement> getRemoveBtnList() {
         return removeBtnList;
+    }
+
+    public List<WebElement> getSelectedProducts() {
+        return selectedProducts;
     }
 }
