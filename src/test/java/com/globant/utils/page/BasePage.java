@@ -1,6 +1,8 @@
 package com.globant.utils.page;
 
 import com.globant.pages.*;
+import io.selenium.utils.ElementContextLocatorFactory;
+import io.selenium.utils.FieldContextDecorator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BasePage {
@@ -18,8 +21,10 @@ public class BasePage {
     public static final Logger log = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver) {
-        setDriver(driver);
-        PageFactory.initElements(driver,this);
+         setDriver(driver);
+        PageFactory.initElements(new FieldContextDecorator(new ElementContextLocatorFactory(
+                driver, Duration.ofSeconds(20), Arrays.asList(StaleElementReferenceException.class,
+                ElementNotInteractableException.class ))), this);
     }
 
     public static void setDriver(WebDriver driver) {
