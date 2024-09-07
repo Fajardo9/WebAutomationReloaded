@@ -52,6 +52,11 @@
             <version>5.9.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.fslev</groupId>
+            <artifactId>selenium-jutils</artifactId>
+            <version>1.25</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
