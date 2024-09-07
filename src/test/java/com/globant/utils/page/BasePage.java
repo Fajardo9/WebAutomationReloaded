@@ -1,5 +1,6 @@
 package com.globant.utils.page;
 
+import com.globant.pages.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +18,12 @@ public class BasePage {
     public static final Logger log = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver) {
+        setDriver(driver);
         PageFactory.initElements(driver,this);
+    }
+
+    public static void setDriver(WebDriver driver) {
+        BasePage.driver = driver;
     }
 
     public WebDriverWait setUpWait(long seconds) {
@@ -25,10 +31,10 @@ public class BasePage {
     }
 
 
-    public boolean isElementVisible(WebElement element){
+    public boolean isElementVisible(WebElement element, long seconds){
         try{
-            setUpWait(4).until(ExpectedConditions.visibilityOf(element));
-        }catch (TimeoutException e){
+            setUpWait(seconds).until(ExpectedConditions.visibilityOf(element));
+        }catch (TimeoutException | NullPointerException e){
             log.info("TimeoutException:{}",e.getMessage());
             return false;
         }
@@ -70,4 +76,28 @@ public class BasePage {
     public static WebDriver getDriver() {
         return driver;
     }
+    public static LoginPage returnLoginScreen(WebDriver driver) {
+        return new LoginPage(driver);
+    }
+
+    public HomePage returnHomeScreen(WebDriver driver) {
+        return new HomePage(driver);
+    }
+
+    public CartPage returnCartPage() {
+        return new CartPage(driver);
+    }
+
+    public CheckoutYourInfoPage returnCheckoutYourInfoPage(WebDriver driver) {
+        return new CheckoutYourInfoPage(driver);
+    }
+
+    public CheckoutOverviewPage returnCheckoutOverviewPage() {
+        return new CheckoutOverviewPage(driver);
+    }
+
+    public CheckoutCompletePage returnCheckoutCompletePage(WebDriver driver) {
+        return new CheckoutCompletePage(driver);
+    }
+
 }

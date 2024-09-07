@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CartPage extends BasePage {
 
-    private static final String PAGE_TITLE = "span.title[data-test='title']\"";
+    private static final String PAGE_TITLE = "span.title[data-test='title']";
     private static final String CHECKOUT_BUTTON = "button[data-test='checkout']";
     private static final String CONTINUE_SHOPPING_BUTTON = "continue-shopping";
     private static final String REMOVE_FROM_CART_BUTTON = "cart_button";

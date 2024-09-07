@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class HomePage extends BasePage {
 
@@ -41,7 +42,7 @@ public class HomePage extends BasePage {
         return addToCartButtons;
     }
 
-    public WebElement getCart() {
+    public WebElement getCartBtn() {
         return cart;
     }
 
@@ -49,12 +50,17 @@ public class HomePage extends BasePage {
         return checkoutBtn;
     }
 
-    public List<WebElement> getAddToCartButtonsList() {
+    public List<WebElement> getListOfAddToCartButtons() {
         return addToCartButtonsList;
     }
 
     public void setAddToCartButtonsList(List<WebElement> addToCartButtonsList) {
         this.addToCartButtonsList = addToCartButtonsList;
+    }
+
+    public int selectRandomProduct(){
+        isElementVisible(getAddToCartButtons().get(0),4);
+        return ThreadLocalRandom.current().nextInt(getAddToCartButtons().size());
     }
 
 }

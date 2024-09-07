@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CheckoutYourInfoPage extends BasePage {
 
-    private static final String PAGE_TITLE = "span.title[data-test='title']\"";
+    private static final String PAGE_TITLE = "span.title[data-test='title']";
     private static final String FIRST_NAME_FIELD = "input[placeholder='First Name']";
     private static final String LAST_NAME_FIELD = "input[placeholder='Last Name']";
     private static final String POSTAL_CODE_FIELD = "//*[@id=\"postal-code\"]";
@@ -23,7 +23,7 @@ public class CheckoutYourInfoPage extends BasePage {
     @FindBy(xpath = POSTAL_CODE_FIELD)
     private WebElement postalCodeField;
     @FindBy(className = SUMMIT_BUTTON)
-    private WebElement summitBtn;
+    private WebElement continueBtn;
     @FindBy(id = CANCEL_BUTTON)
     private WebElement cancelBtn;
 
@@ -48,8 +48,8 @@ public class CheckoutYourInfoPage extends BasePage {
         return postalCodeField;
     }
 
-    public WebElement getSummitBtn() {
-        return summitBtn;
+    public WebElement getContinueBtn() {
+        return continueBtn;
     }
 
     public WebElement getCancelBtn() {
