@@ -1,5 +1,5 @@
 # WebAutomationReloaded
-Web automation exercise to imporve practices when implementing the page object model(POM) design patter and gaining a deeper understanding of the web automation process using the page [saucedemo](https://www.saucedemo.com/) and deploying three different test.
+Web automation exercise to imporve practices when implementing the page object model(POM) design patter and gaining a deeper understanding of the web automation process using the page [saucedemo](https://www.saucedemo.com/) using Selenium Webdriver and TestNG to create the three test cases.
 .
 ## Requires
 - JDK 11 or higher (JDK 17 is already configured inside the `POM.xml` file)
