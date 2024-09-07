@@ -8,7 +8,7 @@
 
     <test verbose="1" preserve-order="true" name="product_purchase_test">
         <classes>
-            <class name="com.globant.utils.test.BaseTest"/>
+            <class name="com.globant.tests.ProductPurchaseTest"/>
         </classes>
     </test>
 
