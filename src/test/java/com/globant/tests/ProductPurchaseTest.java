@@ -22,9 +22,9 @@ public class ProductPurchaseTest extends BaseTest {
         assertTrue(homePage.isElementVisible(homePage.getBtnReactBurgerMenu(),4));
         log.info("Adding product to cart");
         homePage.setAddToCartButtonsList(homePage.getAddToCartButtons());
-        WebElement selectedProduct = homePage.getListOfAddToCartButtons().get(homePage.selectRandomProduct());
-        homePage.clickElement(selectedProduct);
-        String productName = selectedProduct.getAttribute("id").replace("remove-", "");
+        homePage.setSelectedProduct(homePage.getListOfAddToCartButtons().get(homePage.selectRandomProduct()));
+        homePage.clickElement(homePage.getSelectedProduct());
+        String productName = homePage.getSelectedProduct().getAttribute("id").replace("remove-", "");
         log.info("Verifying that the product was added to cart");
         assertEquals(homePage.getCartBtn().getText(),"1");
         homePage.clickElement(homePage.getCartBtn());
@@ -62,10 +62,4 @@ public class ProductPurchaseTest extends BaseTest {
         log.info("Successful return to the home page, Ending test");
     }
 
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }
