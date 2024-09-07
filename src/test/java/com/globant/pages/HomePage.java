@@ -30,6 +30,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "button[data-test='checkout']")
     private WebElement checkoutBtn;
 
+    private WebElement selectedProduct;
     public WebElement getBtnReactBurgerMenu() {
         return btnReactBurgerMenu;
     }
@@ -56,6 +57,14 @@ public class HomePage extends BasePage {
 
     public void setAddToCartButtonsList(List<WebElement> addToCartButtonsList) {
         this.addToCartButtonsList = addToCartButtonsList;
+    }
+
+    public WebElement getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    public void setSelectedProduct(WebElement selectedProduct) {
+        this.selectedProduct = selectedProduct;
     }
 
     public int selectRandomProduct(){
