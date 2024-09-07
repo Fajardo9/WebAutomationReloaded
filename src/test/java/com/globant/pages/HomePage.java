@@ -15,6 +15,7 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(id = "react-burger-menu-btn")
     private WebElement btnReactBurgerMenu;
 
@@ -31,6 +32,7 @@ public class HomePage extends BasePage {
     private WebElement checkoutBtn;
 
     private WebElement selectedProduct;
+
     public WebElement getBtnReactBurgerMenu() {
         return btnReactBurgerMenu;
     }
@@ -51,7 +53,7 @@ public class HomePage extends BasePage {
         return checkoutBtn;
     }
 
-    public List<WebElement> getListOfAddToCartButtons() {
+    public List<WebElement> getListedProductsbyAddtoCartButtons() {
         return addToCartButtonsList;
     }
 
@@ -67,8 +69,8 @@ public class HomePage extends BasePage {
         this.selectedProduct = selectedProduct;
     }
 
-    public int selectRandomProduct(){
-        isElementVisible(getAddToCartButtons().get(0),4);
+    public int selectRandomProduct() {
+        isElementVisible(getAddToCartButtons().get(0), 4);
         return ThreadLocalRandom.current().nextInt(getAddToCartButtons().size());
     }
 

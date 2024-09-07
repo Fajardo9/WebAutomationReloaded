@@ -1,6 +1,7 @@
 package com.globant.pages;
 
 import com.globant.utils.page.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,7 @@ import java.util.List;
 public class CartPage extends BasePage {
 
     private static final String PAGE_TITLE = "span.title[data-test='title']";
+    private static final String SHOPPING_CART_BUTTON = "//*[@id=\"shopping_cart_container\"]";
     private static final String SELECTED_PRODUCTS = "inventory_item_name";
     private static final String CHECKOUT_BUTTON = "button[data-test='checkout']";
     private static final String CONTINUE_SHOPPING_BUTTON = "continue-shopping";
@@ -17,6 +19,8 @@ public class CartPage extends BasePage {
 
     @FindBy(css = PAGE_TITLE)
     private WebElement pageTitle;
+    @FindBy(xpath = SHOPPING_CART_BUTTON)
+    private WebElement cartBtn;
     @FindBy(className = SELECTED_PRODUCTS)
     private List<WebElement> selectedProducts;
     @FindBy(css = CHECKOUT_BUTTON)
@@ -26,12 +30,16 @@ public class CartPage extends BasePage {
     @FindBy(className = REMOVE_FROM_CART_BUTTON)
     private List<WebElement> removeBtnList;
 
+    public CartPage(WebDriver driver) {
+        super(driver);
+    }
+
     public WebElement getPageTitle() {
         return pageTitle;
     }
 
-    public CartPage(WebDriver driver) {
-        super(driver);
+    public WebElement getCartBtn() {
+        return cartBtn;
     }
 
     public WebElement getCheckoutBtn() {
@@ -48,5 +56,13 @@ public class CartPage extends BasePage {
 
     public List<WebElement> getSelectedProducts() {
         return selectedProducts;
+    }
+
+    public void setSelectedProducts(List<WebElement> selectedProduct) {
+        selectedProducts = selectedProduct;
+    }
+
+    public By getCartBtnLocator() {
+        return By.xpath(SHOPPING_CART_BUTTON);
     }
 }

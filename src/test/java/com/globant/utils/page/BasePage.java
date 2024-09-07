@@ -21,10 +21,10 @@ public class BasePage {
     public static final Logger log = LoggerFactory.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver) {
-         setDriver(driver);
+        setDriver(driver);
         PageFactory.initElements(new FieldContextDecorator(new ElementContextLocatorFactory(
                 driver, Duration.ofSeconds(20), Arrays.asList(StaleElementReferenceException.class,
-                ElementNotInteractableException.class ))), this);
+                ElementNotInteractableException.class))), this);
     }
 
     public static void setDriver(WebDriver driver) {
@@ -36,39 +36,40 @@ public class BasePage {
     }
 
 
-    public boolean isElementVisible(WebElement element, long seconds){
-        try{
+    public boolean isElementVisible(WebElement element, long seconds) {
+        try {
             setUpWait(seconds).until(ExpectedConditions.visibilityOf(element));
-        }catch (TimeoutException | NullPointerException e){
-            log.info("TimeoutException:{}",e.getMessage());
+        } catch (TimeoutException | NullPointerException e) {
+            log.info("TimeoutException:{}", e.getMessage());
             return false;
         }
         return element.isDisplayed();
     }
 
-    public boolean isElementSelected(WebElement element){
-        try{
+    public boolean isElementSelected(WebElement element) {
+        try {
             setUpWait(4).until(ExpectedConditions.visibilityOf(element));
-        }catch (TimeoutException e){
-            log.info("TimeoutException:{}",e.getMessage());
+        } catch (TimeoutException e) {
+            log.info("TimeoutException:{}", e.getMessage());
             return false;
         }
         return element.isSelected();
     }
-    public void clickElement(WebElement element){
+
+    public void clickElement(WebElement element) {
         element.click();
     }
 
-    public void sendKeysToField(WebElement element, String keysToSend){
+    public void sendKeysToField(WebElement element, String keysToSend) {
         try {
             setUpWait(4).until(ExpectedConditions.elementToBeClickable(element));
-        }catch (TimeoutException | NotFoundException e){
+        } catch (TimeoutException | NotFoundException e) {
             log.info("Element wasn't found{}", e.getMessage());
         }
         element.sendKeys(keysToSend);
     }
 
-    public List<WebElement> listElementsById(List<WebElement> elementsList) {
+    public static List<WebElement> listElementsById(List<WebElement> elementsList) {
         List<WebElement> elementList = new ArrayList<>();
         List<String> buttonIdentifier;
         buttonIdentifier = elementsList.stream().map(p -> p.getAttribute("id")).toList();
@@ -81,6 +82,7 @@ public class BasePage {
     public static WebDriver getDriver() {
         return driver;
     }
+
     public static LoginPage returnLoginScreen(WebDriver driver) {
         return new LoginPage(driver);
     }
@@ -89,7 +91,7 @@ public class BasePage {
         return new HomePage(driver);
     }
 
-    public CartPage returnCartPage() {
+    public CartPage returnCartPage(WebDriver driver) {
         return new CartPage(driver);
     }
 
