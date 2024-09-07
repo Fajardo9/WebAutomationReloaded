@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All test suite">
+<suite name="Purchasing a product test">
     <parameter name="url" value="https://www.saucedemo.com/"/>
     <parameter name="user" value="standard_user"/>
     <parameter name="password" value="secret_sauce"/>
     <parameter name="first_name" value="Alejandro"/>
 
-    <test verbose="1" preserve-order="true" name="product_purchase_test">
+    <test verbose="1" name="product_purchase_test" allow-return-values="true">
         <classes>
+            <class name="com.globant.utils.test.BaseTest"/>
             <class name="com.globant.tests.ProductPurchaseTest"/>
         </classes>
     </test>
-
-    <test name="log_out_test" verbose="1" preserve-order="true" enabled="false">
-        <classes>
-        </classes>
-    </test>
-
 
 </suite>
