@@ -10,9 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -23,7 +21,7 @@ public class BaseTest {
     public static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @Parameters({"url"})
-    @BeforeClass
+    @BeforeSuite
     public void setupDriver(String url) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -32,7 +30,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
     }
 
-    @Test
+    @BeforeTest
     @Parameters({"user","password"})
     public void setUp(String user, String password) {
         loginPage = BasePage.returnLoginScreen(driver);
