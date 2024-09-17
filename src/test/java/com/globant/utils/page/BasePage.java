@@ -46,16 +46,6 @@ public class BasePage {
         return element.isDisplayed();
     }
 
-    public boolean isElementSelected(WebElement element) {
-        try {
-            setUpWait(4).until(ExpectedConditions.visibilityOf(element));
-        } catch (TimeoutException e) {
-            log.info("TimeoutException:{}", e.getMessage());
-            return false;
-        }
-        return element.isSelected();
-    }
-
     public void clickElement(WebElement element) {
         element.click();
     }
@@ -77,6 +67,15 @@ public class BasePage {
             elementList.add(getDriver().findElement(By.id(productName)));
         }
         return elementList;
+    }
+    public void clickElements(List<WebElement> elements, int quantity) {
+        if (elements.size() >= quantity) {
+            for (int i = 0; i <= quantity - 1; i++) {
+                clickElement(elements.get(i));
+            }
+        }else{
+            log.info("Select a valid quantity there are only {} elements", elements.size());
+        }
     }
 
     public static WebDriver getDriver() {

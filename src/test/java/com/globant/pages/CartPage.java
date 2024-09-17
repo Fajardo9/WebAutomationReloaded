@@ -66,4 +66,10 @@ public class CartPage extends BasePage {
     public By getCartBtnLocator() {
         return cartBtnLocator;
     }
+
+    public void clickAllElementsInList(List<WebElement> elements) {
+        for (WebElement element : elements) {
+            clickElement(element);
+        }
+    }
 }
