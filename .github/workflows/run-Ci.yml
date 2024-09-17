@@ -3,11 +3,11 @@ name: Continous-Integration-Practice
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
       - 'CI-probes'
   pull_request:
     branches:
-      - 'master'
+      - 'main'
   workflow_dispatch:
     inputs:
       browserName:
