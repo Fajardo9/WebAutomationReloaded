@@ -14,7 +14,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class BaseTest {
+public abstract class BaseTest {
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static LoginPage loginPage;

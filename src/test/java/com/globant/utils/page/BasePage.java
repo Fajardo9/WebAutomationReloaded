@@ -98,7 +98,7 @@ public class BasePage {
         return new CheckoutYourInfoPage(driver);
     }
 
-    public CheckoutOverviewPage returnCheckoutOverviewPage() {
+    public CheckoutOverviewPage returnCheckoutOverviewPage(WebDriver driver) {
         return new CheckoutOverviewPage(driver);
     }
 
