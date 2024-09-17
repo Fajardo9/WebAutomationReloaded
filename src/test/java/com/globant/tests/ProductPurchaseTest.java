@@ -42,7 +42,7 @@ public class ProductPurchaseTest extends BaseTest {
         checkoutYourInfoPage.sendKeysToField(checkoutYourInfoPage.getPostalCodeField(),postalCode);
         checkoutYourInfoPage.clickElement(checkoutYourInfoPage.getContinueBtn());
         log.info("Verifying information in the overview page");
-        CheckoutOverviewPage checkoutOverviewPage = checkoutYourInfoPage.returnCheckoutOverviewPage();
+        CheckoutOverviewPage checkoutOverviewPage = checkoutYourInfoPage.returnCheckoutOverviewPage(getDriver());
         assertEquals(checkoutOverviewPage.getPageTitle().getText(),"Checkout: Overview");
         assertEquals(checkoutOverviewPage.getPurchasedItems().size(), 1,
                 "The number of items in the cart does not match with the quantity selected by the user");
