@@ -11,7 +11,6 @@ public class CheckoutOverviewPage extends BasePage {
 
     private static final String PAGE_TITLE = "span.title[data-test='title']";
     private static final String FINISH_BUTTON = "finish";
-    private static final String CANCEL_BUTTON = "cancel";
     private static final String PURCHASED_ITEMS = "inventory_item_name";
 
 
@@ -23,8 +22,6 @@ public class CheckoutOverviewPage extends BasePage {
     private WebElement pageTitle;
     @FindBy(id = FINISH_BUTTON)
     private WebElement finishBtn;
-    @FindBy(id = CANCEL_BUTTON)
-    private WebElement cancelBtn;
     @FindBy(className = PURCHASED_ITEMS)
     private List<WebElement> purchasedItems;
 
@@ -34,10 +31,6 @@ public class CheckoutOverviewPage extends BasePage {
 
     public WebElement getFinishBtn() {
         return finishBtn;
-    }
-
-    public WebElement getCancelBtn() {
-        return cancelBtn;
     }
 
     public List<WebElement> getPurchasedItems() {
