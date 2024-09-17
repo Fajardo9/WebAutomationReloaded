@@ -3,15 +3,15 @@ package com.globant.tests;
 import com.globant.pages.*;
 import com.globant.utils.dataProvider.DataProviders;
 import com.globant.utils.test.BaseTest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 public class ProductPurchaseTest extends BaseTest {
 
-    public static final Logger log = LoggerFactory.getLogger(ProductPurchaseTest.class);
+    public static final Logger log = LogManager.getLogger(ProductPurchaseTest.class);
 
     @Test(dataProvider = "persona", dataProviderClass = DataProviders.class)
     public void verifyPurchaseSuccessForOneItem(String name, String lastName, String postalCode) {
@@ -42,7 +42,7 @@ public class ProductPurchaseTest extends BaseTest {
         checkoutYourInfoPage.sendKeysToField(checkoutYourInfoPage.getPostalCodeField(),postalCode);
         checkoutYourInfoPage.clickElement(checkoutYourInfoPage.getContinueBtn());
         log.info("Verifying information in the overview page");
-        CheckoutOverviewPage checkoutOverviewPage = checkoutYourInfoPage.returnCheckoutOverviewPage();
+        CheckoutOverviewPage checkoutOverviewPage = checkoutYourInfoPage.returnCheckoutOverviewPage(getDriver());
         assertEquals(checkoutOverviewPage.getPageTitle().getText(),"Checkout: Overview");
         assertEquals(checkoutOverviewPage.getPurchasedItems().size(), 1,
                 "The number of items in the cart does not match with the quantity selected by the user");

@@ -1,6 +1,7 @@
 package com.globant.pages;
 
 import com.globant.utils.page.BasePage;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,5 +66,11 @@ public class CartPage extends BasePage {
 
     public By getCartBtnLocator() {
         return cartBtnLocator;
+    }
+
+    public void clickAllElementsInList(@NotNull List<WebElement> elements) {
+        for (WebElement element : elements) {
+            clickElement(element);
+        }
     }
 }
