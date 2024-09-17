@@ -29,6 +29,7 @@ public class CartPage extends BasePage {
     private WebElement continueShoppingBtn;
     @FindBy(className = REMOVE_FROM_CART_BUTTON)
     private List<WebElement> removeBtnList;
+    private final By cartBtnLocator = By.xpath(SHOPPING_CART_BUTTON);
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -63,6 +64,6 @@ public class CartPage extends BasePage {
     }
 
     public By getCartBtnLocator() {
-        return By.xpath(SHOPPING_CART_BUTTON);
+        return cartBtnLocator;
     }
 }
