@@ -3,15 +3,15 @@ package com.globant.tests;
 import com.globant.pages.HomePage;
 import com.globant.utils.dataProvider.DataProviders;
 import com.globant.utils.test.BaseTest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
 public class LogoutTest extends BaseTest {
 
-    public static final Logger log = LoggerFactory.getLogger(LogoutTest.class);
+    public static final Logger log = LogManager.getLogger(LogoutTest.class);
 
     @Test(dataProvider = "persona", dataProviderClass = DataProviders.class)
     public void verifySuccessfullyLogOut(String name, String lastName, String postalCode) {

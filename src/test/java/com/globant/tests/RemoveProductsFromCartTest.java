@@ -5,10 +5,10 @@ import com.globant.pages.HomePage;
 import com.globant.utils.dataProvider.DataProviders;
 import com.globant.utils.page.BasePage;
 import com.globant.utils.test.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
@@ -18,10 +18,10 @@ import static org.testng.Assert.assertTrue;
 
 public class RemoveProductsFromCartTest extends BaseTest {
 
-    public static final Logger log = LoggerFactory.getLogger(RemoveProductsFromCartTest.class);
+    public static final Logger log = LogManager.getLogger(RemoveProductsFromCartTest.class);
 
-    @Test(dataProvider = "persona", dataProviderClass = DataProviders.class)
-    public void selectAndRemoveThreeProductsFromCart(String name, String lastName, String postalCode){
+    @Test
+    public void selectAndRemoveThreeProductsFromCart(){
         int quantity = 3;
         log.info("Login into the home page");
         HomePage homePage = loginPage.returnHomeScreen(getDriver());
