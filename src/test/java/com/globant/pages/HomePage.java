@@ -28,9 +28,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]")
     private WebElement cart;
 
-    @FindBy(css = "button[data-test='checkout']")
-    private WebElement checkoutBtn;
-
     private WebElement selectedProduct;
 
     public WebElement getBtnReactBurgerMenu() {
@@ -47,10 +44,6 @@ public class HomePage extends BasePage {
 
     public WebElement getCartBtn() {
         return cart;
-    }
-
-    public WebElement getCheckoutBtn() {
-        return checkoutBtn;
     }
 
     public List<WebElement> getListedProductsbyAddtoCartButtons() {
