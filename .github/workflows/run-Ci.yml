@@ -44,10 +44,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Create gh-pages branch if it does not exist
-        run: |
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-
       - name: Allure report action
         uses: simple-elf/allure-report-action@master
         if: always()
