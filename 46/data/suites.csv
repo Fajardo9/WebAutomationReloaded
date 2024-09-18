@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Sep 18 18:59:05 GMT 2024","Wed Sep 18 18:59:06 GMT 2024","738","E2E Test Suite","product_purchase_test","com.globant.tests.ProductPurchaseTest","com.globant.tests.ProductPurchaseTest","verifyPurchaseSuccessForOneItem","verifyPurchaseSuccessForOneItem",""
+"passed","Wed Sep 18 18:59:06 GMT 2024","Wed Sep 18 18:59:07 GMT 2024","704","E2E Test Suite","log_out_test","com.globant.tests.LogoutTest","com.globant.tests.LogoutTest","verifySuccessfullyLogOut","verifySuccessfullyLogOut",""
+"passed","Wed Sep 18 18:59:03 GMT 2024","Wed Sep 18 18:59:04 GMT 2024","595","E2E Test Suite","remove_three_items_from_the_cat_test","com.globant.tests.RemoveProductsFromCartTest","com.globant.tests.RemoveProductsFromCartTest","selectAndRemoveThreeProductsFromCart","selectAndRemoveThreeProductsFromCart",""
