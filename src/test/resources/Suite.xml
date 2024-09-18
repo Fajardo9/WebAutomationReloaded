@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test E2E">
+    <parameter name="url" value="https://www.saucedemo.com/"/>
+    <parameter name="user" value="standard_user"/>
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="first_name" value="Alejandro"/>
+
+    <test verbose="2" name="remove_three_items_from_the_cat_test" allow-return-values="true">
+        <classes>
+            <class name="com.globant.utils.test.BaseTest"/>
+            <class name="com.globant.tests.RemoveProductsFromCartTest"/>
+        </classes>
+    </test>
+
+    <test verbose="2" name="product_purchase_test" allow-return-values="true">
+        <classes>
+            <class name="com.globant.utils.test.BaseTest"/>
+            <class name="com.globant.tests.ProductPurchaseTest"/>
+        </classes>
+    </test>
+
+    <test verbose="2" name="log_out_test" allow-return-values="true">
+        <classes>
+            <class name="com.globant.utils.test.BaseTest"/>
+            <class name="com.globant.tests.LogoutTest"/>
+        </classes>
+    </test>
+
+</suite>
