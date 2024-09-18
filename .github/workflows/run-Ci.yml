@@ -24,7 +24,8 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-
+    env:
+      SUITE: ${{ github.event.inputs.suite || 'E2E' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.1.7
@@ -38,8 +39,6 @@ jobs:
       - name: Build with Maven
         run: |
           mvn clean
-      - name: Select suite
-        run: mvn -DsuiteName=${{ inputs.suite || 'E2E' }} verify
 
       - name: Debug Selected Suite Value
         run: |
