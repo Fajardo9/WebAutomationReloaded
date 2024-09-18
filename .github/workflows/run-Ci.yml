@@ -12,9 +12,9 @@ on:
     inputs:
       suite:
         description: 'Select the test suite to run'
+        default: 'E2E'
         required: false
         type: string
-        default: 'E2E'
         options:
           - 'E2E'
           - 'Purchase one product'
