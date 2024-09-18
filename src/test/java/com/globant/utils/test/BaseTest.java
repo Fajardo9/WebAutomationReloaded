@@ -24,6 +24,7 @@ public abstract class BaseTest {
     @BeforeTest
     public void setupDriver(String url) {
         WebDriverManager.chromedriver().setup();
+        System.setProperty("suite", "E2E");
         driver = new ChromeDriver();
         driver.navigate().to(url);
         driver.manage().window().maximize();
