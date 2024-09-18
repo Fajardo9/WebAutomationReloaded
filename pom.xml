@@ -82,7 +82,7 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/Suite.xml</suiteXmlFile>
+                        <File>src/test/resources/Suite.xml</File>
                         <suiteXmlFile>src/test/resources/suiteLogOutTest.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>

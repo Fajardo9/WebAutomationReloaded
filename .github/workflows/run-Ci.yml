@@ -38,6 +38,8 @@ jobs:
       - name: Build with Maven
         run: |
           mvn clean
+      - name: Select suite
+        run: mvn -DsuiteName=${{ inputs.suite || 'E2E' }} verify
 
       - name: Debug Selected Suite Value
         run: |
