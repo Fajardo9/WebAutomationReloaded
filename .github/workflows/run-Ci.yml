@@ -1,4 +1,4 @@
-name: Continous-Integration-Practice
+name: Continuous-Integration-Practice
 
 on:
   push:
@@ -10,11 +10,16 @@ on:
       - 'master'
   workflow_dispatch:
     inputs:
-      browserName:
-        description: 'Browser Type'
+      suite:
+        description: 'Select the test to run'
         required: false
         type: string
-        default: 'CHROME'
+        default: 'E2E'
+        options:
+          - 'E2E'
+          - 'Purchase one product'
+          - 'Log Out'
+          - 'Cart Test'
 
 jobs:
   start-test:
@@ -33,9 +38,26 @@ jobs:
         run: |
           mvn clean
 
-      - name: Run TestNG tests
+      - name: 'Run the selected TestNG suite'
         run: |
-          mvn test -DsuiteXmlFile=src/test/resources/suiteProductPurchaseTest.xml
+          case "${{ github.event.inputs.suite }}" in
+            "E2E")
+              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/Suite.xml
+              ;;
+            "Purchase one product")
+              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteProductPurchaseTest.xml
+              ;;
+            "Log Out")
+              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteLogOutTest.xml
+              ;;
+            "Cart Test")
+              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteRemoveProductsFromTheCartTest.xml
+              ;;
+            *)
+              echo "Invalid suite selected"
+              exit 1
+              ;;
+          esac
 
       - name: Get Allure history
         uses: actions/checkout@v4.1.7
@@ -50,10 +72,10 @@ jobs:
         if: always()
         id: allure-report
         with:
-            allure_results: ${{ vars.ALLURE_RESULTS_PATH }}
-            gh_pages: gh-pages
-            allure_report: allure-report
-            allure_history: allure-history
+          allure_results: ${{ vars.ALLURE_RESULTS_PATH }}
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
       - name: Deploy report to Github Pages
         uses: crazy-max/ghaction-github-pages@v4
