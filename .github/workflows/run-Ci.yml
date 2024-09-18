@@ -13,7 +13,7 @@ on:
       suite:
         description: 'Select the test suite to run'
         default: 'E2E'
-        required: false
+        required: true
         type: string
         options:
           - 'E2E'
@@ -24,8 +24,6 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    env:
-      SUITE: ${{ github.event.inputs.suite || 'E2E' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.1.7
@@ -51,7 +49,7 @@ jobs:
           SUITE_PATH="src/test/resources"
           case "${{ github.event.inputs.suite }}" in
             "E2E")
-              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/Suite.xml
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/
               ;;
             "Purchase one product")
               mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteProductPurchaseTest.xml
