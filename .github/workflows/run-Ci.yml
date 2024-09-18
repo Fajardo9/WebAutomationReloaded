@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       suite:
-        description: 'Select the test to run'
+        description: 'Select the test suite to run'
         required: false
         type: string
         default: 'E2E'
@@ -22,11 +22,12 @@ on:
           - 'Cart Test'
 
 jobs:
-  start-test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.1.7
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.7
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4.3.0
@@ -38,20 +39,22 @@ jobs:
         run: |
           mvn clean
 
-      - name: 'Run the selected TestNG suite'
+      # Extracted paths for the TestNG suites to variables for better readability and maintainability
+      - name: 'Execute the selected TestNG suite'
         run: |
+          SUITE_PATH="src/test/resources"
           case "${{ github.event.inputs.suite }}" in
             "E2E")
-              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/Suite.xml
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/Suite.xml
               ;;
             "Purchase one product")
-              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteProductPurchaseTest.xml
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteProductPurchaseTest.xml
               ;;
             "Log Out")
-              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteLogOutTest.xml
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteLogOutTest.xml
               ;;
             "Cart Test")
-              mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suiteRemoveProductsFromTheCartTest.xml
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteRemoveProductsFromTheCartTest.xml
               ;;
             *)
               echo "Invalid suite selected"
@@ -59,7 +62,11 @@ jobs:
               ;;
           esac
 
-      - name: Get Allure history
+      - name: Debug Selected Suite Value
+        run: |
+          echo "Selected suite: ${{ github.event.inputs.suite }}"
+
+      - name: Retrieve Allure History
         uses: actions/checkout@v4.1.7
         if: always()
         continue-on-error: true
