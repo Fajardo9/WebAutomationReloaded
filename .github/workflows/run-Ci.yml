@@ -45,7 +45,11 @@ jobs:
       - name: 'Execute the selected TestNG suite'
         run: |
           SUITE_PATH="src/test/resources"
-          case "${{ github.event.inputs.suite }}" in
+           SELECTED_SUITE="${{ github.event.inputs.suite }}"
+          if [ -z "$SELECTED_SUITE" ]; then
+            SELECTED_SUITE="E2E"
+          fi
+          case "$SELECTED_SUITE" in
             "E2E")
               mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/Suite.xml
               ;;
