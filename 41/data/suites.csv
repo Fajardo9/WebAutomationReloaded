@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"skipped","Wed Sep 18 18:43:28 GMT 2024","Wed Sep 18 18:43:28 GMT 2024","1","Remove products from the shopping cart test","remove_three_items_from_the_cat_test","com.globant.tests.RemoveProductsFromCartTest","com.globant.tests.RemoveProductsFromCartTest","selectAndRemoveThreeProductsFromCart","selectAndRemoveThreeProductsFromCart",""
+"broken","Wed Sep 18 18:43:28 GMT 2024","Wed Sep 18 18:43:28 GMT 2024","2","Remove products from the shopping cart test","remove_three_items_from_the_cat_test","com.globant.tests.RemoveProductsFromCartTest","com.globant.tests.RemoveProductsFromCartTest","setupDriver","setupDriver",""

@@ -1,0 +1,1 @@
+[{"uid":"73a7a8173e721c00","name":"selectAndRemoveThreeProductsFromCart","time":{"start":1726685008495,"stop":1726685008496,"duration":1},"status":"skipped","severity":"normal"},{"uid":"c213115f418d1aed","name":"setupDriver","time":{"start":1726685008438,"stop":1726685008440,"duration":2},"status":"broken","severity":"normal"}]
