@@ -12,7 +12,6 @@ public class CheckoutYourInfoPage extends BasePage {
     private static final String LAST_NAME_FIELD = "input[placeholder='Last Name']";
     private static final String POSTAL_CODE_FIELD = "//*[@id=\"postal-code\"]";
     private static final String SUMMIT_BUTTON = "submit-button";
-    private static final String CANCEL_BUTTON = "cancel";
 
     @FindBy(css = PAGE_TITLE)
     private WebElement pageTitle;
@@ -24,8 +23,6 @@ public class CheckoutYourInfoPage extends BasePage {
     private WebElement postalCodeField;
     @FindBy(className = SUMMIT_BUTTON)
     private WebElement continueBtn;
-    @FindBy(id = CANCEL_BUTTON)
-    private WebElement cancelBtn;
 
 
     public WebElement getPageTitle() {
@@ -50,10 +47,6 @@ public class CheckoutYourInfoPage extends BasePage {
 
     public WebElement getContinueBtn() {
         return continueBtn;
-    }
-
-    public WebElement getCancelBtn() {
-        return cancelBtn;
     }
 
 }
