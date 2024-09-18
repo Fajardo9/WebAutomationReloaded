@@ -21,7 +21,7 @@ public abstract class BaseTest {
     public static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @Parameters({"url"})
-    @BeforeSuite
+    @BeforeTest
     public void setupDriver(String url) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -30,7 +30,7 @@ public abstract class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
     }
 
-    @BeforeTest
+    @BeforeTest(dependsOnMethods = "setupDriver")
     @Parameters({"user","password"})
     public void setUp(String user, String password) {
         loginPage = BasePage.returnLoginScreen(driver);
