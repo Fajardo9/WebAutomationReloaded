@@ -41,15 +41,13 @@ jobs:
       - name: Debug Selected Suite Value
         run: |
           echo "Selected suite: ${{ github.event.inputs.suite }}"
-     
-     
 
       - name: 'Execute the selected TestNG suite'
         run: |
           SUITE_PATH="src/test/resources"
           case "${{ github.event.inputs.suite }}" in
             "E2E")
-              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/Suite.xml
               ;;
             "Purchase one product")
               mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteProductPurchaseTest.xml
