@@ -1,4 +1,4 @@
-name: Continous-Integration-Practice
+name: Continuous-Integration-Practice
 
 on:
   push:
@@ -10,18 +10,24 @@ on:
       - 'main'
   workflow_dispatch:
     inputs:
-      browserName:
-        description: 'Browser Type'
+      suite:
+        description: 'Select the test suite to run'
+        default: 'E2E'
         required: false
         type: string
-        default: 'CHROME'
+        options:
+          - 'E2E'
+          - 'Purchase one product'
+          - 'Log Out'
+          - 'Cart Test'
 
 jobs:
-  start-test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.1.7
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.7
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4.3.0
@@ -33,9 +39,33 @@ jobs:
         run: |
           mvn clean
 
-      - name: Run TestNG tests
+      - name: Debug Selected Suite Value
         run: |
-          mvn test -DsuiteXmlFile=src/test/resources/suiteProductPurchaseTest.xml
+          echo "Selected suite: ${{ github.event.inputs.suite }}"
+     
+     
+
+      - name: 'Execute the selected TestNG suite'
+        run: |
+          SUITE_PATH="src/test/resources"
+          case "${{ github.event.inputs.suite }}" in
+            "E2E")
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/Suite.xml
+              ;;
+            "Purchase one product")
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteProductPurchaseTest.xml
+              ;;
+            "Log Out")
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteLogOutTest.xml
+              ;;
+            "Cart Test")
+              mvn test -Dsurefire.suiteXmlFiles=${SUITE_PATH}/suiteRemoveProductsFromTheCartTest.xml
+              ;;
+            *)
+              echo "Invalid suite selected"
+              exit 1
+              ;;
+          esac
 
       - name: Get Allure history
         uses: actions/checkout@v4.1.7
@@ -50,10 +80,10 @@ jobs:
         if: always()
         id: allure-report
         with:
-            allure_results: ${{ vars.ALLURE_RESULTS_PATH }}
-            gh_pages: gh-pages
-            allure_report: allure-report
-            allure_history: allure-history
+          allure_results: ${{ vars.ALLURE_RESULTS_PATH }}
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
       - name: Deploy report to Github Pages
         uses: crazy-max/ghaction-github-pages@v4
