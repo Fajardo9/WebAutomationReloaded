@@ -6,6 +6,7 @@ import com.globant.utils.page.BasePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -20,17 +21,25 @@ public abstract class BaseTest {
     public static LoginPage loginPage;
     public static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
+    @BeforeTest
     @Parameters({"url"})
-    @BeforeSuite
     public void setupDriver(String url) {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        System.setProperty("suite", "E2E");
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        driver = new ChromeDriver(options);
         driver.navigate().to(url);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
     }
 
-    @BeforeTest
+    @BeforeTest(dependsOnMethods = "setupDriver")
     @Parameters({"user","password"})
     public void setUp(String user, String password) {
         loginPage = BasePage.returnLoginScreen(driver);
